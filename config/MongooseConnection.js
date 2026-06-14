@@ -1,8 +1,10 @@
+console.log("this file is loaded")
 const mongoose = require('mongoose')
-
+const dbgr = require("debug")("development:mongoose")
+const config = require('config')
 
 mongoose
-.connect("mongodb://localhost:27017/scatch")
+.connect(`${config.get("MONGO_URI")}`)
 .then(()=>{
     console.log('connected to database')
 })
@@ -11,4 +13,4 @@ mongoose
 }
 )
 
-module.exports =  mongoose.connection
+module.exports =  mongoose.connection;
