@@ -1,4 +1,3 @@
-console.log("this file is loaded")
 const mongoose = require('mongoose')
 const dbgr = require("debug")("development:mongoose")
 const config = require('config')
@@ -9,7 +8,7 @@ mongoose
     console.log('connected to database')
 })
 .catch((err)=>{
-    console.log("Error Occurred :",err)
+    console.log("Error Occurred :",err.message)
 }
 )
 
