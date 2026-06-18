@@ -10,15 +10,25 @@ const db = require('./config/MongooseConnection')
 const ownerRouter = require('./routes/ownerRouter')
 const productRouter = require('./routes/ProductRouter')
 const userRouter = require('./routes/UserRouter')
+const session = require('express-session');
+const flash = require('connect-flash');
 
 app.use(express.static(path.join(__dirname , "public")))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cookieParser())
+app.use(session({
+  secret: process.env.JWT_KEY,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash())
 app.set('view engine','ejs')
 
 app.use('/owners', ownerRouter)
 app.use('/products', productRouter)
 app.use('/users', userRouter)
+
 
 
 app.listen(3000,()=>{

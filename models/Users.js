@@ -6,7 +6,10 @@ const UserSchema = mongoose.Schema({
         minLength:3,
         trim:true
     },
-    Email:String,
+    Email:{
+        type:String,
+        required:true
+    },
     Password:String,
     Cart:{
         type:Array,
